@@ -66,7 +66,7 @@ public class RedisCacheService {
 
     public Optional<ProxyResult> getFromCache(final String ipAddress) {
         try (final Jedis jedis = this.jedisPool.getResource()) {
-            LOGGER.info("Getting proxy result from cache for IP address: {}", ipAddress);
+            LOGGER.info("Trying to get proxy result from cache for IP address: {}", ipAddress);
             final String json = jedis.get(ipAddress);
             return Optional.ofNullable(GsonUtil.getGson().fromJson(json, ProxyResult.class));
         } catch (final Exception exception) {

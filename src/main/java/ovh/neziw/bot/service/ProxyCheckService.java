@@ -51,6 +51,7 @@ public class ProxyCheckService {
 
     public Optional<ProxyResult> getProxyResult(final String ipAddress) {
         try {
+            LOGGER.info("Sending request to proxycheck.io for IP address: {}", ipAddress);
             final URL url = URI.create(String.format(ENDPOINT_URL, ipAddress, this.apiKey)).toURL();
             final HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
