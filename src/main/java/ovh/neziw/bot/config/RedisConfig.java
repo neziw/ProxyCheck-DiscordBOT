@@ -38,6 +38,7 @@ public class RedisConfig extends OkaeriConfig {
     public int minIdle;
     public boolean blockWhenExhausted;
     public long maxWaitSeconds;
+    public int cacheTTLMinutes;
 
     public RedisConfig() {
         this.connectionUrl = "redis://localhost:6379";
@@ -46,5 +47,6 @@ public class RedisConfig extends OkaeriConfig {
         this.minIdle = 16;
         this.blockWhenExhausted = true;
         this.maxWaitSeconds = 15;
+        this.cacheTTLMinutes = 60 * 4; // 4 hours
     }
 }

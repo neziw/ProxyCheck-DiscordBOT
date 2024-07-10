@@ -38,6 +38,7 @@ public class RedisCacheService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheService.class);
     private JedisPool jedisPool;
+    private int cacheTTLSeconds;
 
     public RedisCacheService(final RedisConfig redisConfig) {
         try {
@@ -48,6 +49,7 @@ public class RedisCacheService {
             jedisPoolConfig.setBlockWhenExhausted(redisConfig.blockWhenExhausted);
             jedisPoolConfig.setMaxWait(Duration.ofSeconds(redisConfig.maxWaitSeconds));
             this.jedisPool = new JedisPool(jedisPoolConfig, redisConfig.connectionUrl);
+            this.cacheTTLSeconds = (int) Duration.ofMinutes(redisConfig.cacheTTLMinutes).toSeconds();
         } catch (final Exception exception) {
             LOGGER.error("Error creating Redis connection pool", exception);
         }
@@ -56,7 +58,7 @@ public class RedisCacheService {
     public void addToCache(final String ipAddress, final ProxyResult proxyResult) {
         try (final Jedis jedis = this.jedisPool.getResource()) {
             LOGGER.info("Adding proxy result to cache for IP address: {}", ipAddress);
-            jedis.setex(ipAddress, Duration.ofHours(2).getSeconds(), GsonUtil.getGson().toJson(proxyResult));
+            jedis.setex(ipAddress, this.cacheTTLSeconds, GsonUtil.getGson().toJson(proxyResult));
         } catch (final Exception exception) {
             LOGGER.error("Error adding proxy result to cache", exception);
         }
