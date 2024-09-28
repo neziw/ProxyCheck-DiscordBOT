@@ -52,7 +52,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("redis.clients:jedis:5.2.0-beta5")
     implementation("eu.okaeri:okaeri-configs-yaml-snakeyaml:5.0.2")
-    implementation("ch.qos.logback:logback-classic:1.5.7")
+    implementation("ch.qos.logback:logback-classic:1.5.8")
 }
 
 tasks.build {
