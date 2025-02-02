@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:5.2.3")
+    implementation("net.dv8tion:JDA:5.3.0")
     implementation("com.google.code.gson:gson:2.12.1")
     implementation("redis.clients:jedis:5.2.0")
     implementation("eu.okaeri:okaeri-configs-yaml-snakeyaml:5.0.5")
