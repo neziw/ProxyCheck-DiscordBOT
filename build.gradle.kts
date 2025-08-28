@@ -50,7 +50,7 @@ repositories {
 dependencies {
     implementation("net.dv8tion:JDA:5.3.2")
     implementation("com.google.code.gson:gson:2.13.0")
-    implementation("redis.clients:jedis:5.2.0")
+    implementation("redis.clients:jedis:6.2.0")
     implementation("eu.okaeri:okaeri-configs-yaml-snakeyaml:5.0.8")
     implementation("ch.qos.logback:logback-classic:1.5.18")
 }
